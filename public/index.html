@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Algorithms</title>
+    </head>
+    <body>
+        <ul>
+            <li>
+                Insertion Sort
+                <ul>
+                    <li id="unsorted"></li>
+                    <li id="sorted"></li>
+                </ul>
+            </li>
+        </ul>
+        <script>
+            var arr = [3,7,1,1,2,0];
+
+            render('#unsorted', arr.toString());
+            render('#sorted', insertionSort(arr).toString());
+
+            function insertionSort() {
+                var j, i, key;
+
+                for (j = 1; j < arr.length; j++) {
+                    key = arr[j];
+                    i = j - 1;
+                    while (i >= 0 && arr[i] > key) {
+                        arr[i+1] = arr[i];
+                        i = i-1;
+                    }
+                    arr[i+1] = key;
+                }
+                return arr;
+            }
+
+            function render(selector, text) {
+                var
+                    paragraph = document.createElement('p'),
+                    textNode = document.createTextNode(selector.slice(1) + ': [' + text + ']');
+
+                paragraph.appendChild(textNode);
+                document.querySelector(selector).appendChild(paragraph);
+            }
+        </script>
+    </body>
+</html>
